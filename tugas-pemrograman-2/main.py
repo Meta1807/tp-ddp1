@@ -13,37 +13,36 @@ def main():
     data = GameData(start_game())  # Initialize GameData class with data from start_game()
 
     while True:
-        if data.player.health > 0 and data.player.match_round != 5:  # Check if player is still alive/is not at round 5
+        if data.player.health > 0 and data.player.match_round != 6:  # Check if player is still alive/is not at round 5
             song = get_song(data)
             start_round(song, data.player)
         else:
             highscores = get_highscore_or_create('read').readlines()  # Get highscores from file
             
-            for i in range(0, len(highscores)):
-                highscores[i] = highscores[i].strip()  # Strip all preceding and leading whitespace from highscore
-            
             check = check_highscore(data, highscores)  # Execute highscore check function
 
-            if check == True:
-                print('NEW HIGHSCORE!!!')
-                print(f'{"Username":<9}: {data.player.username}')
-                print(f'{"Score":<9}: {data.player.score}')
-                print(f'Berhasil Meraih Highscore Mode {data.player.mode.capitalize()}')
-                break
-
-            elif data.player.health == 0:
+            if data.player.health == 0:
                 print('GAME OVER')
                 print(f'Sayang sekali {data.player.username}, anda terhenti disini')
                 print('Hasil Akhir:')
-                print(f'Score: {data.player.score}')
-                break
+                print(f'Score: {data.player.score}\n')
 
             elif data.player.match_round == 5:
                 print('SELAMAT!')
                 print('Anda berhasil menyelesaikan permainan')
                 print('Hasil Akhir:')
-                print(f'Score: {data.player.score}')
-                break
+                print(f'Score: {data.player.score}\n')
+
+            if check == True:
+                print('NEW HIGHSCORE!!!')
+                print(f'{"Username":<9}: {data.player.username}')
+                print(f'{"Score":<9}: {data.player.score}')
+                print(f'Berhasil meraih highscore {data.player.mode.capitalize()}!')
+            
+            print('~'*10 + ' Thanks for playing the game!', '~'*10)
+            input('Press enter to exit the program...')
+            
+            break
 
 if __name__ == '__main__':
     main()

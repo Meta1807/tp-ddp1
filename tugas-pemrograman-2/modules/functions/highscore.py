@@ -44,7 +44,7 @@ def check_highscore(data, highscores: list) -> bool:
     '''
     if data.player.mode == 'expert':
         highscore = highscores[1].split(' ') # [expert, null, 0]
-        if data.player.score > int(highscore[2]):
+        if data.player.score > int(highscore[-1]):
             highscores[1] = f'expert {data.player.username} {data.player.score}'
             with get_highscore_or_create('write') as f:
                 for item in highscores:
@@ -53,7 +53,7 @@ def check_highscore(data, highscores: list) -> bool:
         
     elif data.player.mode == 'normal':
         highscore = highscores[0].split(' ')
-        if data.player.score > int(highscore[2]):
+        if data.player.score > int(highscore[-1]):
             highscores[0] = f'normal {data.player.username} {data.player.score}'
             with get_highscore_or_create('write') as f:
                 for item in highscores:
