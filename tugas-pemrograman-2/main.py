@@ -7,7 +7,9 @@ from modules.classes_.GameData import GameData
 
 clear_screen()
 
-get_highscore_or_create('read')  # Check if highscore.txt exists
+with get_highscore_or_create('read') as f:
+    f.close()  # Check if highscore.txt exists
+
 
 def main():
     data = GameData(start_game())  # Initialize GameData class with data from start_game()
@@ -21,19 +23,19 @@ def main():
             
             check = check_highscore(data, highscores)  # Execute highscore check function
 
-            if data.player.health == 0:
+            if data.player.health == 0:  # Print death screen if player loses before round 5
                 print('GAME OVER')
                 print(f'Sayang sekali {data.player.username}, anda terhenti disini')
                 print('Hasil Akhir:')
                 print(f'Score: {data.player.score}\n')
 
-            elif data.player.match_round == 5:
+            elif data.player.match_round == 6:  # Print congratulations screen if player reaches round 5
                 print('SELAMAT!')
                 print('Anda berhasil menyelesaikan permainan')
                 print('Hasil Akhir:')
                 print(f'Score: {data.player.score}\n')
 
-            if check == True:
+            if check == True:  # check_highscore returns True if user highscore is higher, hence we check for it using an if statement
                 print('NEW HIGHSCORE!!!')
                 print(f'{"Username":<9}: {data.player.username}')
                 print(f'{"Score":<9}: {data.player.score}')
