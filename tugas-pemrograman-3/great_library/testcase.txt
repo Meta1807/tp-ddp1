@@ -1,0 +1,17 @@
+ADD RAK Rak01
+ADD RAK RakFiksi
+ADD RAK Rak01
+ADD BUKU Rak01 Buku01 saya 2020 Penerbit Fiksi
+ADD BUKU Rak02 Buku01 saya 2020 Penerbit Fiksi
+ADD BUKU Rak01 Buku02 saya 2020 Penerbit Fiksi
+ADD RAK Rak02
+MOVE BUKU Buku01 Rak02
+MOVE BUKU Buku01 Rak03
+ADD BUKU RakReferensi FilsafatDasar1 saya 2020 Penerbit Fiksi
+SEARCH BUKU Buku01
+SEARCH BUKU Buku02
+SEARCH BUKU Buku04
+SEARCH BUKU FilsafatDasar1
+dasdasdasd
+ADD BUKU
+EXIT

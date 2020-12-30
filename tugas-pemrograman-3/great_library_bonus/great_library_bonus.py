@@ -3,6 +3,7 @@ from modules.add.book import addBook
 from modules.move.move import *
 from modules.table.table import *
 from modules.recursive.search import search
+from modules.remove.remove import removeShelf
 
 def main():
     libraryData = {}
@@ -31,7 +32,6 @@ def main():
                             status = addBook(book, libraryData, command[2])
                             if status == True:
                                 print('Buku berhasil ditambahkan!')
-                                printTable(command[1], [book, command[2]])
                             else:
                                 print('Buku dengan nama yang sama sudah ada di The The Great Library')
 
@@ -53,7 +53,6 @@ def main():
                         buku = search(command[2], libraryData, list(libraryData.keys()))
                         if buku:
                             moveBook(command[2], buku[1], command[3], libraryData)
-                            print(f'Buku dengan nama {command[2]} dipindahkan dari rak dengan nama {buku[1]} ke rak dengan nama {command[3]}')
                         else:
                             print(f'Buku dengan nama {command[2]} tidak ditemukan dalam sistem.')
 
@@ -78,6 +77,16 @@ def main():
                     print('Perintah Tidak Valid')
                     print('Penggunaan Command: SEARCH BUKU <Nama Buku>')
 
+            elif command[0] == 'REMOVE':
+                try:
+                    if command[1] == 'RAK':
+                        removeShelf(command[2], libraryData)
+                    else:
+                        print('Perintah Tidak Valid')
+                        print('Penggunaan Command: REMOVE RAK <Nama Rak>')
+                except IndexError:
+                    print('Perintah Tidak Valid')
+                    print('Penggunaan Command: REMOVE RAK <Nama Rak>')
             elif command[0] == 'EXIT':
                 break
 
